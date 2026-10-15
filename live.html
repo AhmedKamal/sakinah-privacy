@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Sakinah live</title>
+<!-- Relay for the Sakinah TV app: YouTube refuses embeds from pages without a web origin
+     (the TV app runs from file://), so the app frames this page, which frames the official
+     live stream. Usage: live.html?v=<11-character YouTube video id> -->
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}iframe{border:0;width:100%;height:100%}</style>
+</head>
+<body>
+<script>
+  var m = /[?&]v=([\w-]{11})(?:&|$)/.exec(location.search);
+  if (m) {
+    var f = document.createElement('iframe');
+    f.allow = 'autoplay; encrypted-media; fullscreen';
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.src = 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1';
+    document.body.appendChild(f);
+  }
+</script>
+</body>
+</html>
